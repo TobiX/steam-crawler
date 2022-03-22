@@ -45,6 +45,17 @@ CREATE TABLE IF NOT EXISTS apps (
   last_change_number INTEGER NOT NULL
 );
 
+CREATE TABLE IF NOT EXISTS steamdeck_category (
+  category INTEGER PRIMARY KEY,
+  status TEXT
+);
+
+INSERT INTO steamdeck_category (category, status) VALUES
+  (1, 'Unsupported'),
+  (2, 'Playable'),
+  (3, 'Verified')
+ON CONFLICT DO NOTHING;
+
 CREATE TABLE IF NOT EXISTS apps_steamdeck (
   appid INTEGER PRIMARY KEY,
   category INTEGER,
@@ -60,6 +71,6 @@ CREATE TABLE IF NOT EXISTS apps_steamdeck (
   requires_internet_for_singleplayer INTEGER,
   recommended_runtime TEXT,
   requires_h264 INTEGER,
-  last_change_number INTEGER NOT NULL
+  last_change_number INTEGER NOT NULL,
+  FOREIGN KEY(category) REFERENCES steamdeck_category(category)
 );
-
