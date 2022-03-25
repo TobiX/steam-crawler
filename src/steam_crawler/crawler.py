@@ -35,14 +35,19 @@ class Updater:
         self.db = Database(file)
 
     def run(self):
+        last_change = self.db.get_last_change()
+        print(f'Last change: {last_change}')
         with anon_client() as client:
-            changes = client.get_changes_since(self.db.get_last_change(), True, False)
-            if changes.force_full_update:
+            changes = client.get_changes_since(last_change, True, False)
+            if changes.force_full_app_update:
+                print('Full update forced.')
                 resp = WebAPI(None).ISteamApps.GetAppList_v2()
                 apps = (x['appid'] for x in resp['applist']['apps'])
             else:
                 apps = (entry.appid for entry in changes.app_changes)
             self.update_apps(client, apps)
+        last_change = self.db.get_last_change()
+        print(f'New last change: {last_change}')
 
     def update_apps(self, client, apps: Iterator[int]):
         aset = set(apps)
