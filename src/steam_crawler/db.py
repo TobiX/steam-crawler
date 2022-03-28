@@ -50,6 +50,9 @@ class Database:
                 cdata.update(data.get('extended', {}))
                 cdata.update(data.get('config', {}))
                 common.append(cdata)
+                if 'oslist' in cdata:
+                    for os in cdata['oslist'].split(','):
+                        cdata['os_' + os] = True
                 if 'steam_deck_compatibility' in cdata:
                     deckdata = cdata['steam_deck_compatibility']
                     deckdata.update(deckdata.pop('configuration', {}))
