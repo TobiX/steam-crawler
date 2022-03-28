@@ -39,7 +39,7 @@ class Updater:
         print(f'Last change: {last_change}')
         with anon_client() as client:
             changes = client.get_changes_since(last_change, True, False)
-            if changes.force_full_app_update:
+            if changes.force_full_update or changes.force_full_app_update:
                 print('Full update forced.')
                 resp = WebAPI(None).ISteamApps.GetAppList_v2()
                 apps = (x['appid'] for x in resp['applist']['apps'])
