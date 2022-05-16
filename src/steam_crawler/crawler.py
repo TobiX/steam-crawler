@@ -1,16 +1,11 @@
 # SPDX-License-Identifier: MIT-0
 
-# Must be first! (next release of steam package)
-# import steam.monkey
-# steam.monkey.patch_minimal()
-
 from collections.abc import Iterator
 from contextlib import contextmanager
 from time import sleep
-import json
 
 from rich.progress import Progress, MofNCompleteColumn
-from steam.client import SteamClient, EMsg
+from steam.client import SteamClient
 from steam.webapi import WebAPI
 
 from .db import Database

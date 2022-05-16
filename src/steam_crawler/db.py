@@ -3,7 +3,6 @@
 import sqlite3
 from importlib.resources import read_text
 from collections import defaultdict
-from collections.abc import Iterator
 
 
 class Database:
