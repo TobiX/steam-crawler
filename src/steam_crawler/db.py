@@ -1,4 +1,5 @@
 # SPDX-License-Identifier: MIT-0
+from __future__ import annotations
 
 import sqlite3
 from importlib.resources import read_text

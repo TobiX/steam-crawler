@@ -1,10 +1,65 @@
 [build-system]
-requires = [
-    "setuptools>=45",
-    "setuptools_scm[toml]>=6.2",
-    "wheel"
-]
+requires = ["setuptools>=61.2", "setuptools_scm[toml]>=6.2"]
 build-backend = "setuptools.build_meta"
+
+[project]
+name = "steam-crawler"
+authors = [{name = "Tobias Gruetzmacher", email = "tobias-git@23.gs"}]
+description = "A simple steam metadata crawler & dumper"
+readme = "README.md"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT No Attribution License (MIT-0)",
+    "Operating System :: OS Independent",
+]
+requires-python = ">=3.8"
+dependencies = [
+    "rich==12.6.0",
+    "steam[client]==1.4.4",
+]
+dynamic = ["version"]
+
+[project.optional-dependencies]
+lint = [
+    "flake8<6",
+    "flake8-2020",
+    "flake8-breakpoint",
+    "flake8-bugbear",
+    "flake8-coding",
+    "flake8-commas",
+    "flake8-comprehensions",
+    "flake8-eradicate",
+    "flake8-fixme",
+    "flake8-functions",
+    "flake8-future-import",
+    "flake8-logging-format",
+    "flake8-noqa",
+    "Flake8-pyproject",
+    "flake8-pytest",
+    "flake8-pytest-style",
+]
+
+[project.urls]
+Homepage = "https://github.com/TobiX/steam-crawler"
+"Bug Tracker" = "https://github.com/TobiX/steam-crawler/issues"
+
+[project.scripts]
+steam-crawler = "steam_crawler.cli:run"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+namespaces = false
+
+[tool.flake8]
+ignore = [
+    'E127', 'E128',  # hanging instead of visual indent
+    'FI58',  # future annotations required
+]
+min-version = "3.8"
+no-accept-encodings = true
 
 [tool.setuptools_scm]
 
