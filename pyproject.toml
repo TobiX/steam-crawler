@@ -14,7 +14,7 @@ classifiers = [
 ]
 requires-python = ">=3.8"
 dependencies = [
-    "rich==13.5.0",
+    "rich==13.5.2",
     "steam[client]==1.4.4",
 ]
 dynamic = ["version"]
