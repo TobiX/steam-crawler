@@ -21,7 +21,7 @@ dynamic = ["version"]
 
 [project.optional-dependencies]
 lint = [
-    "flake8<6",
+    "flake8<8",
     "flake8-2020",
     "flake8-breakpoint",
     "flake8-bugbear",
