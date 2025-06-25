@@ -27,8 +27,8 @@ def anon_client():
 
 
 class Updater:
-    def __init__(self, file):
-        self.db = Database(file)
+    def __init__(self, db: Database):
+        self.db = db
 
     def run(self):
         last_change = self.db.get_last_change()
