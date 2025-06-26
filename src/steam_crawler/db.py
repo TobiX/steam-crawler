@@ -2,8 +2,8 @@
 from __future__ import annotations
 
 import sqlite3
-from importlib.resources import read_text
 from collections import defaultdict
+from importlib.resources import read_text
 
 
 class Database:
@@ -19,7 +19,8 @@ class Database:
         columns = {}
         for table in self.db.cursor().execute('PRAGMA table_list'):
             tname = table['name']
-            cols = [x['name'] for x in self.db.cursor().execute(f'PRAGMA table_info({tname})')]
+            cols = [x['name'] for x in self.db.cursor().execute(
+                f'PRAGMA table_info({tname})')]
             columns[tname] = cols
         self.columns = columns
 
@@ -44,7 +45,10 @@ class Database:
         steamdeck = []
         for appid, data in response['apps'].items():
             cnr = data['_change_number']
-            changes.append(_app_dict(appid, cnr, {'sha': data['_sha'], 'size': data['_size']}))
+            changes.append(_app_dict(appid, cnr, {
+                'sha': data['_sha'],
+                'size': data['_size'],
+            }))
             if 'common' in data:
                 cdata = _app_dict(appid, cnr, data['common'])
                 cdata.update(data.get('extended', {}))
@@ -64,13 +68,16 @@ class Database:
         self.db.commit()
 
     def get_last_change(self) -> int:
-        for row in self.db.cursor().execute('SELECT max(last_change_number) FROM apps_changes'):
+        for row in self.db.cursor().execute(
+                'SELECT max(last_change_number) FROM apps_changes'):
             if row[0]:
                 return int(row[0])
         return 0
 
 
-def _app_dict(appid: int, change_number: int, data: dict[str, object]) -> dict[str, object]:
-    ret = defaultdict(lambda: None, appid=appid, last_change_number=change_number)
+def _app_dict(appid: int, change_number: int,
+        data: dict[str, object]) -> dict[str, object]:
+    ret = defaultdict(lambda: None, appid=appid,
+        last_change_number=change_number)
     ret.update(data)
     return ret

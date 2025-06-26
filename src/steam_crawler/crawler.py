@@ -5,7 +5,7 @@ from collections.abc import Iterator
 from contextlib import contextmanager
 from time import sleep
 
-from rich.progress import Progress, MofNCompleteColumn
+from rich.progress import MofNCompleteColumn, Progress
 from steam.client import SteamClient
 from steam.webapi import WebAPI
 
@@ -47,7 +47,8 @@ class Updater:
 
     def update_apps(self, client, apps: Iterator[int]):
         aset = set(apps)
-        with Progress(*Progress.get_default_columns(), MofNCompleteColumn()) as progress:
+        with Progress(*Progress.get_default_columns(),
+                      MofNCompleteColumn()) as progress:
             down = progress.add_task('[red]Download', total=len(aset))
             commit = progress.add_task('[green]Process', total=len(aset))
 

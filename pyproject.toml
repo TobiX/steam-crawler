@@ -19,26 +19,6 @@ dependencies = [
 ]
 dynamic = ["version"]
 
-[project.optional-dependencies]
-lint = [
-    "flake8<6",
-    "flake8-2020",
-    "flake8-breakpoint",
-    "flake8-bugbear",
-    "flake8-coding",
-    "flake8-commas",
-    "flake8-comprehensions",
-    "flake8-eradicate",
-    "flake8-fixme",
-    "flake8-functions",
-    "flake8-future-import",
-    "flake8-logging-format",
-    "flake8-noqa",
-    "Flake8-pyproject",
-    "flake8-pytest",
-    "flake8-pytest-style",
-]
-
 [project.urls]
 Homepage = "https://github.com/TobiX/steam-crawler"
 "Bug Tracker" = "https://github.com/TobiX/steam-crawler/issues"
@@ -58,7 +38,7 @@ ignore = [
     'E127', 'E128',  # hanging instead of visual indent
     'FI58',  # future annotations required
 ]
-min-version = "3.8"
+min-version = "3.9"
 no-accept-encodings = true
 
 [tool.setuptools_scm]

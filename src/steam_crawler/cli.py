@@ -5,8 +5,8 @@ from __future__ import annotations
 import argparse
 import pathlib
 
-from .db import Database
 from .crawler import Updater
+from .db import Database
 
 
 def run():
